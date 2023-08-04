@@ -1,59 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+			integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<link rel="stylesheet" href="/min-css/weather.min.css" />
+		<title>Weather App</title>
+	</head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="/min-css/weather.min.css" />
-  <title>Weather App</title>
-</head>
+	<body>
+		<div class="box">
+			<div class="wave -one"></div>
+			<div class="wave -two"></div>
+			<div class="wave -three"></div>
 
-<body>
-  <div class="box">
-    <div class="wave -one"></div>
-    <div class="wave -two"></div>
-    <div class="wave -three"></div>
+			<div id="weathericon">
+				<i class="fas fa-sun" style="color: #eccc68"></i>
+			</div>
 
-    <div id="weathericon">
-      <i class="fas fa-sun" style="color: #eccc68"></i>
-    </div>
+			<div class="info">
+				<h2 class="location">
+					<i class="fas fa-street-view" style="color: #fff"></i>
+					<%= city %>,<%= weatherData.sys.country %>
+				</h2>
+				<p id="date">WED | AUG 2 | 10:49AM</p>
+				<h1 class="temp"><%= weatherData.main.temp %>&deg;C</h1>
+				<h3 class="tempmin_max">
+					Min <%= weatherData.main.temp_min %>&deg;C | Max <%=
+					weatherData.main.temp_max %>&deg;C
+				</h3>
+			</div>
+		</div>
 
-    <div class="info">
-      <h2 class="location">
-        <i class="fas fa-street-view" style="color: #fff"></i>
-        <%= city %>,<%= weatherData.sys.country %>
-      </h2>
-      <p id="date">WED | AUG 2 | 10:49AM</p>
-      <h1 class="temp">
-        <%= weatherData.main.temp %>&deg;C
-      </h1>
-      <h3 class="tempmin_max">
-        Min <%= weatherData.main.temp_min %>&deg;C | Max <%= weatherData.main.temp_max %>&deg;C
-      </h3>
-    </div>
-  </div>
+		<script src="/js/weather.js"></script>
+		<script>
+			const tempStatus = `<%= weatherData.weather[0].main %>`;
+			weathericon = document.getElementById("weathericon");
 
-  <script src="/js/weather.js"></script>
-  <script>
-    const tempStatus = `<%= weatherData.weather[0].main %>`;
-    weathericon = document.getElementById("weathericon");
-
-    //condition to check sunny or cloudy
-    if (tempStatus == "Sunny") {
-      weathericon.innerHTML = "<i class='fas fa-sun' style='color: #eccc68;'></i>";
-    } else if (tempStatus == "Clouds") {
-      weathericon.innerHTML =
-        "<i class='fas fa-cloud' style='color: #f1f2f6;'></i>";
-    } else if (tempStatus == "Rainy") {
-      weathericon.innerHTML =
-        "<i class='fas  fa-cloud-rain' style='color: #a4b0be;'></i>";
-    } else {
-      weathericon.innerHTML = "<i class='fas fa-cloud' style='color:#f1f2f6;'></i>";
-    }
-  </script>
-</body>
-
+			//condition to check sunny or cloudy
+			if (tempStatus == "Sunny") {
+				weathericon.innerHTML =
+					"<i class='fas fa-sun' style='color: #eccc68;'></i>";
+			} else if (tempStatus == "Clouds") {
+				weathericon.innerHTML =
+					"<i class='fas fa-cloud' style='color: #f1f2f6;'></i>";
+			} else if (tempStatus == "Rainy") {
+				weathericon.innerHTML =
+					"<i class='fas  fa-cloud-rain' style='color: #a4b0be;'></i>";
+			} else {
+				weathericon.innerHTML =
+					"<i class='fas fa-cloud' style='color:#f1f2f6;'></i>";
+			}
+		</script>
+	</body>
 </html>
