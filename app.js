@@ -2,6 +2,7 @@
 const express = require("express");
 const axios = require("axios");
 const path = require("path");
+const fs = require("fs");
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -23,7 +24,7 @@ app.get("/", (req, res) => {
 
 // Weather route
 app.post("/weather", async (req, res) => {
-	const rawData = fs.readFileSync("./apiKeys.json");
+	const rawData = fs.readFileSync("./env.json");
 	const apiKeys = JSON.parse(rawData);
 	const apiKey = apiKeys.apiKey;
 	const { city } = req.body;

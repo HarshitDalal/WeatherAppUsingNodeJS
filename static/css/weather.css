@@ -89,6 +89,7 @@ body .box .info {
 body .box .info .location {
   margin-top: 1.5rem;
   text-align: center;
+  text-transform: uppercase;
   font-weight: 800;
   font-size: 3rem;
 }
@@ -134,7 +135,7 @@ body .box:after {
   transform: translate3d(0, 0, 0);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 720px) {
   .box {
     width: 90vw;
     height: 80vh;
